@@ -9,9 +9,9 @@ COPY pom.xml /build
 COPY src /build/src
 
 # Build application
-RUN mvn clean package
+RUN mvn clean install
 
-
+RUN ls -ltr /build/target/*.jar
 
 FROM openjdk:8
 
