@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: customservice
+  name: client-service
   labels:
-    app: customservice
+    app: client-service
     visualize: "true"
 spec:
   strategy:
@@ -11,17 +11,17 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: customservice
+      app: client-service
   template:
     metadata:
       labels:
-        app: customservice
+        app: client-service
         version: "v1"
         visualize: "true"     
     spec:
       containers:
-      - name: customservice
-        image: customservice:v1
+      - name: client-service
+        image: client-service:v1
         imagePullPolicy: Never
         resources:
             requests:
@@ -41,14 +41,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: customservice
+  name: client-service
   labels:
-    name: customservice
+    name: client-service
     visualize: "true"
 spec:
   type: NodePort
   selector:
-    app: customservice
+    app: client-service
   ports:
     - protocol: TCP
       port: 9999
@@ -60,13 +60,13 @@ spec:
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: customservice
+  name: client-service
   namespace: default
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: customservice
+    name: client-service
   minReplicas: 1
   maxReplicas: 2
   targetCPUUtilizationPercentage: 50    
