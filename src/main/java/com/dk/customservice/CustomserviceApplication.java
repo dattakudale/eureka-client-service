@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan(basePackages= {"com.example.customservice"})
+@ComponentScan(basePackages= {"com.dk.customservice"})
 @SpringBootApplication
 @EnableDiscoveryClient
 public class CustomserviceApplication {
