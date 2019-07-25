@@ -1,25 +1,8 @@
-FROM maven:3-jdk-11 as builder
-
-# create app folder for sources
-RUN mkdir -p /build
-WORKDIR /build
-COPY pom.xml /build
-
-#Copy source code
-COPY src /build/src
-
-# Build application
-RUN mvn clean install
-
-RUN ls -ltr /build/target/*.jar
-
 FROM openjdk:8
 
 ENV APP_HOME=/app/springboot/
 
-COPY --from=builder /build/target/*.jar ${APP_HOME}/app.jar
-RUN ls -ltr ${APP_HOME}/
-#ADD ./target/eureka-client-service-1.0.0.jar ${APP_HOME}/app.jar
+ADD ./target/eureka-client-service-1.0.0.jar ${APP_HOME}/app.jar
 
 RUN chmod -R u+x ${APP_HOME} && \
     chgrp -R 0 ${APP_HOME} && \
