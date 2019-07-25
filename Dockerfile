@@ -18,6 +18,7 @@ FROM openjdk:8
 ENV APP_HOME=/app/springboot/
 
 COPY --from=builder /build/target/*.jar ${APP_HOME}/app.jar
+RUN ls -ltr ${APP_HOME}/
 #ADD ./target/eureka-client-service-1.0.0.jar ${APP_HOME}/app.jar
 
 RUN chmod -R u+x ${APP_HOME} && \
