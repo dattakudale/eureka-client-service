@@ -12,6 +12,7 @@ COPY src /build/src
 RUN mvn clean package
 
 
+
 FROM openjdk:8
 
 ENV APP_HOME=/app/springboot/
