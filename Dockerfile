@@ -3,7 +3,7 @@ VOLUME /tmp
 
 ENV APP_HOME=/app/springboot/
 
-ADD ./target/customservice-1.0.0.jar ${APP_HOME}/app.jar
+ADD ./target/eureka-client-service-1.0.0.jar ${APP_HOME}/app.jar
 
 RUN chmod -R u+x ${APP_HOME} && \
     chgrp -R 0 ${APP_HOME} && \
@@ -11,5 +11,5 @@ RUN chmod -R u+x ${APP_HOME} && \
 
 USER 10001
 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
-EXPOSE 9999 
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/springboot/app.jar"]
+EXPOSE 8765 
